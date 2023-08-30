@@ -4,6 +4,8 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 
+#include "camera/camera.h"
+
 // Program-persisted variables
 SDL_Window *window;
 SDL_Renderer *renderer;
@@ -21,7 +23,7 @@ SDL_Rect sampleRect = {.x = 10, .y = 10, .w = 100, .h = 100};
 SDL_bool inSampleRect = SDL_FALSE;
 SDL_Color white = {255, 255, 255};
 
-void init_sdl()
+void initSdl()
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         printf("[Error] SDL Init : %s \n", SDL_GetError());
@@ -34,7 +36,7 @@ void init_sdl()
     }
 }
 
-void init_window_and_renderer()
+void initWindowAndRenderer()
 {
     int windowCreationCode = SDL_CreateWindowAndRenderer(windowWidth, windowHeight, SDL_WINDOW_SHOWN, &window, &renderer);
     if (windowCreationCode != 0) {
@@ -45,12 +47,12 @@ void init_window_and_renderer()
     }
 }
 
-void init_ttf()
+void initTtf()
 {
   TTF_Init();
 }
 
-void setup_header_text()
+void setupHeaderText()
 {
     font = TTF_OpenFont("resources/OpenSans-Regular.ttf", 18);
 
@@ -67,7 +69,7 @@ void setup_header_text()
     textSurface = NULL;
 }
 
-void setup_window_icon()
+void setupWindowIcon()
 {
     SDL_Surface *iconSurface;
     iconSurface = IMG_Load("resources/appicon.jpg");
@@ -77,7 +79,7 @@ void setup_window_icon()
     SDL_FreeSurface(iconSurface);
 }
 
-void handle_mouse_drag(SDL_Event e)
+void handleMouseDrag(SDL_Event e)
 {
     if (e.type == SDL_MOUSEBUTTONDOWN) {
         SDL_Point clickCoords = {.x = e.motion.x, .y = e.motion.y};
@@ -101,7 +103,7 @@ void handle_mouse_drag(SDL_Event e)
  * Handles keystrokes and other inputs
  * @return True if program should exit main loop, false otherwise
  */
-SDL_bool handle_inputs()
+SDL_bool handleInputs()
 {
     SDL_Event event;
 
@@ -115,16 +117,16 @@ SDL_bool handle_inputs()
             return SDL_FALSE;
         }
 
-        handle_mouse_drag(event);
+        handleMouseDrag(event);
     }
 
     return SDL_TRUE;
 }
 
-void main_loop()
+void mainLoop()
 {
     for (;;) {
-        if(!handle_inputs()) return;
+        if(!handleInputs()) return;
 
         // Blank out the renderer with all black
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
@@ -143,17 +145,17 @@ void main_loop()
     }
 }
 
-void init_scene()
+void initScene()
 {
-    init_sdl();
-    init_window_and_renderer();
-    init_ttf();
+    initSdl();
+    initWindowAndRenderer();
+    initTtf();
 
-    setup_window_icon();
-    setup_header_text();
+    setupWindowIcon();
+    setupHeaderText();
 }
 
-void destroy_scene()
+void destroyScene()
 {
     SDL_DestroyTexture(headerText);
     TTF_CloseFont(font);
@@ -168,10 +170,11 @@ void destroy_scene()
  */
 int main()
 {
-    init_scene();
-    main_loop();
-    destroy_scene();
-
-    SDL_Quit();
+//    init_scene();
+//    main_loop();
+//    destroy_scene();
+//
+//    SDL_Quit();
+    debugCamera();
     exit(0);
 }
