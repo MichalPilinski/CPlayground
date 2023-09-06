@@ -14,7 +14,12 @@ void logPoint3D(struct Point3D *point)
 // endregion
 
 // region Point
-
+void addVectorToPoint(struct Point3D *point, struct Vector3D *vector3D)
+{
+    point->x = point->x + vector3D->x;
+    point->y = point->y + vector3D->y;
+    point->z = point->z + vector3D->z;
+}
 // endregion
 
 // region Vector

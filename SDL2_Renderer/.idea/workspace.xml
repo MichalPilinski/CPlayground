@@ -20,26 +20,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ace6479-4d8e-450e-98c1-c39aae57a732" name="Changes" comment="Initialized SDL2 project">
-      <change afterPath="$PROJECT_DIR$/src/camera/camera.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/camera/camera.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/geometry.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/geometry.h" afterDir="false" />
+    <list default="true" id="8ace6479-4d8e-450e-98c1-c39aae57a732" name="Changes" comment="Added sensor world vectors calculation logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-3c497a73ef3f7c00fda1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-0be726750593c9e30777.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-fb849f42c5cfb02d1da1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-08-29T22-37-22-0700.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-SDL2_Renderer-Debug-2403886b3bd41e51c877.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/bin/SDL2_Renderer" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/bin/SDL2_Renderer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +107,7 @@
       <updated>1693348640188</updated>
       <workItem from="1693348641219" duration="9000" />
       <workItem from="1693348687577" duration="64000" />
-      <workItem from="1693414439227" duration="10104000" />
+      <workItem from="1693414439227" duration="10674000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized SDL2 project">
       <option name="closed" value="true" />
@@ -135,7 +117,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693348737267</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added sensor world vectors calculation logic">
+      <option name="closed" value="true" />
+      <created>1693435365329</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693435365329</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +139,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialized SDL2 project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialized SDL2 project" />
+    <MESSAGE value="Added sensor world vectors calculation logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sensor world vectors calculation logic" />
   </component>
 </project>

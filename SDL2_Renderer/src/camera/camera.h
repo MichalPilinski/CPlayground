@@ -11,8 +11,14 @@ struct Camera {
 
     struct Vector3D sensorYVector;
     struct Vector3D sensorXVector;
+
     double sensorWidth;
     double sensorHeight;
+
+    int screenWidth;
+    int screenHeight;
+
+    double focalLength;
 };
 
 void debugCamera();
