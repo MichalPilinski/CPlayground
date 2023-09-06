@@ -3,6 +3,7 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
+#include <stdarg.h>
 
 #include "camera/camera.h"
 
@@ -12,8 +13,8 @@ SDL_Renderer *renderer;
 
 TTF_Font *font;
 
-int windowWidth = 640;
-int windowHeight = 480;
+int windowWidth = 800;
+int windowHeight = 640;
 
 SDL_Rect headerTextRect;
 SDL_Texture *headerText;
@@ -22,6 +23,8 @@ int defaultMargin = 5;
 SDL_Rect sampleRect = {.x = 10, .y = 10, .w = 100, .h = 100};
 SDL_bool inSampleRect = SDL_FALSE;
 SDL_Color white = {255, 255, 255};
+
+double cameraFocalLength = 1;
 
 void initSdl()
 {
@@ -79,6 +82,43 @@ void setupWindowIcon()
     SDL_FreeSurface(iconSurface);
 }
 
+void setupCamera()
+{
+    double sensorWidth = (double) windowWidth / windowHeight;
+    initCamera(sensorWidth, 1, windowWidth, windowHeight, cameraFocalLength);
+
+    setCameraPosition(&(struct Point3D) {0, 0, 0});
+    setCameraTarget(&(struct Point3D){10, 10, 10});
+}
+
+void renderCameraData()
+{
+    SDL_Rect cameraTextRect;
+    SDL_Texture *cameraHeaderText;
+
+    struct Point3D cameraPosition = getCameraPosition();
+    struct Point3D cameraTarget = getCameraTarget();
+
+    char buffer[500];
+    snprintf (buffer, 500, "Camera pos: [%.1f, %.1f, %.1f], target: [%.1f, %.1f, %.1f]",
+              cameraPosition.x, cameraPosition.y, cameraPosition.z,
+              cameraTarget.x, cameraTarget.y, cameraTarget.z);
+
+    SDL_Surface *cameraTextSurface = TTF_RenderText_Blended(font, buffer, white);
+    cameraHeaderText = SDL_CreateTextureFromSurface(renderer, cameraTextSurface);
+
+    cameraTextRect.x = defaultMargin;
+    cameraTextRect.y = windowHeight - 30;
+    cameraTextRect.w = cameraTextSurface->w;
+    cameraTextRect.h = cameraTextSurface->h;
+
+    SDL_FreeSurface(cameraTextSurface);
+
+    cameraTextSurface = NULL;
+
+    SDL_RenderCopy(renderer, cameraHeaderText, NULL, &cameraTextRect);
+}
+
 void handleMouseDrag(SDL_Event e)
 {
     if (e.type == SDL_MOUSEBUTTONDOWN) {
@@ -123,6 +163,18 @@ SDL_bool handleInputs()
     return SDL_TRUE;
 }
 
+void initScene()
+{
+    initSdl();
+    initWindowAndRenderer();
+    initTtf();
+
+    setupWindowIcon();
+    setupHeaderText();
+
+    setupCamera();
+}
+
 void mainLoop()
 {
     for (;;) {
@@ -138,21 +190,12 @@ void mainLoop()
 
         // Render sample text
         SDL_RenderCopy(renderer, headerText, NULL, &headerTextRect);
+        renderCameraData();
 
         // Present to renderer
         SDL_RenderPresent(renderer);
         SDL_Delay(10);
     }
-}
-
-void initScene()
-{
-    initSdl();
-    initWindowAndRenderer();
-    initTtf();
-
-    setupWindowIcon();
-    setupHeaderText();
 }
 
 void destroyScene()
@@ -170,11 +213,9 @@ void destroyScene()
  */
 int main()
 {
-//    init_scene();
-//    main_loop();
-//    destroy_scene();
-//
-//    SDL_Quit();
-    debugCamera();
-    exit(0);
+    initScene();
+    mainLoop();
+    destroyScene();
+
+    SDL_Quit();
 }

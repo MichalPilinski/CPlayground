@@ -35,13 +35,22 @@ void calculateCameraInternals()
     calculateSensorNormals();
 }
 
+void setCameraPosition(struct Point3D *position)
+{
+    _camera.position = *position;
+
+    calculateCameraInternals();
+}
+
+void setCameraTarget(struct Point3D *target)
+{
+    _camera.target = *target;
+
+    calculateCameraInternals();
+}
+
 void initCamera(double sensorWidth, double sensorHeight, int screenWidth, int screenHeight, double focalLength)
 {
-    _camera = (struct Camera) {
-            .position = {0, 0, 0},
-            .target = {5, 5, 5},
-    };
-
     _camera.sensorHeight = sensorHeight;
     _camera.sensorWidth = sensorWidth;
 
@@ -73,7 +82,7 @@ struct Vector3D getScreenPointDirection(int x, int y)
     return centerToSensorVector;
 }
 
-struct Point3D getSensorPointPosition(int x, int y)
+struct Point3D getScreenPointPosition(int x, int y)
 {
     struct Vector3D centerToSensorVector = getScreenPointDirection(x, y);
 
@@ -83,8 +92,18 @@ struct Point3D getSensorPointPosition(int x, int y)
     return sensorPoint;
 }
 
+struct Point3D getCameraPosition()
+{
+    return _camera.position;
+}
+
+struct Point3D getCameraTarget()
+{
+    return _camera.target;
+}
+
 void logCamera() {
-    printf("Camera log:\n");
+    printf("||Camera log||\n");
 
     printf("Target: ");
     logPoint3D(&_camera.target);
@@ -98,15 +117,30 @@ void logCamera() {
     logVector3D(&_camera.direction);
     printf("\n");
 
-    printf("Sensor sizes: [%f, %f]", _camera.sensorWidth, _camera.sensorHeight);
+    printf("Sensor size: [%f, %f]", _camera.sensorWidth, _camera.sensorHeight);
     printf("\n");
+
+    printf("Screen size: [%d, %d]", _camera.screenWidth, _camera.screenHeight);
+    printf("\n");
+
+    printf("Focal length: %f\n", _camera.focalLength);
+    printf("\n");
+
 }
 
 void debugCamera()
 {
     initCamera(1,1, 1000, 1000, 1);
+    setCameraPosition(&(struct Point3D){0, 0, 0});
+    setCameraTarget(&(struct Point3D){5, 5 ,5});
+
     logCamera();
 
-    struct Point3D debugPoint = getSensorPointPosition(0, 1000);
+    struct Point3D debugPoint = getScreenPointPosition(0, 1000);
     logPoint3D(&debugPoint);
+
+    setCameraTarget(&(struct Point3D){5, 0, 0});
+
+    struct Point3D debugPoint2 = getScreenPointPosition(0, 1000);
+    logPoint3D(&debugPoint2);
 }
