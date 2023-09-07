@@ -20,7 +20,11 @@ set(SOURCE_FILES    src/main.c
         src/camera/camera.h
         src/camera/camera.c
         src/common/geometry.h
-        src/common/geometry.c)
+        src/common/geometry.c
+        src/distance_providers/distance_aggregator.h
+        src/distance_providers/distance_aggregator.c
+        src/distance_providers/sphere/sphere.h
+        src/distance_providers/sphere/sphere.c)
 
 Message("")
 Message( STATUS "SOURCE entry point : " ${SOURCE_FILES} )

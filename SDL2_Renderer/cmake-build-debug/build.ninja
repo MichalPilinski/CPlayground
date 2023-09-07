@@ -70,6 +70,20 @@ build CMakeFiles/SDL2_Renderer.dir/src/common/geometry.c.o: C_COMPILER__SDL2_Ren
   OBJECT_DIR = CMakeFiles/SDL2_Renderer.dir
   OBJECT_FILE_DIR = CMakeFiles/SDL2_Renderer.dir/src/common
 
+build CMakeFiles/SDL2_Renderer.dir/src/distance_providers/distance_aggregator.c.o: C_COMPILER__SDL2_Renderer_unscanned_Debug /Users/michau/Repos/CPlayground/SDL2_Renderer/src/distance_providers/distance_aggregator.c || cmake_object_order_depends_target_SDL2_Renderer
+  DEP_FILE = CMakeFiles/SDL2_Renderer.dir/src/distance_providers/distance_aggregator.c.o.d
+  FLAGS = -g -std=gnu11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fcolor-diagnostics
+  INCLUDES = -I/opt/homebrew/include/SDL2
+  OBJECT_DIR = CMakeFiles/SDL2_Renderer.dir
+  OBJECT_FILE_DIR = CMakeFiles/SDL2_Renderer.dir/src/distance_providers
+
+build CMakeFiles/SDL2_Renderer.dir/src/distance_providers/sphere/sphere.c.o: C_COMPILER__SDL2_Renderer_unscanned_Debug /Users/michau/Repos/CPlayground/SDL2_Renderer/src/distance_providers/sphere/sphere.c || cmake_object_order_depends_target_SDL2_Renderer
+  DEP_FILE = CMakeFiles/SDL2_Renderer.dir/src/distance_providers/sphere/sphere.c.o.d
+  FLAGS = -g -std=gnu11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fcolor-diagnostics
+  INCLUDES = -I/opt/homebrew/include/SDL2
+  OBJECT_DIR = CMakeFiles/SDL2_Renderer.dir
+  OBJECT_FILE_DIR = CMakeFiles/SDL2_Renderer.dir/src/distance_providers/sphere
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target SDL2_Renderer
@@ -78,7 +92,7 @@ build CMakeFiles/SDL2_Renderer.dir/src/common/geometry.c.o: C_COMPILER__SDL2_Ren
 #############################################
 # Link the executable bin/SDL2_Renderer
 
-build bin/SDL2_Renderer: C_EXECUTABLE_LINKER__SDL2_Renderer_Debug CMakeFiles/SDL2_Renderer.dir/src/main.c.o CMakeFiles/SDL2_Renderer.dir/src/camera/camera.c.o CMakeFiles/SDL2_Renderer.dir/src/common/geometry.c.o | /opt/homebrew/lib/libSDL2main.a /opt/homebrew/lib/libSDL2.dylib /opt/homebrew/lib/libSDL2_ttf.dylib /opt/homebrew/lib/libSDL2_ttf.dylib /opt/homebrew/lib/libSDL2_image.dylib /opt/homebrew/lib/libSDL2_mixer.dylib
+build bin/SDL2_Renderer: C_EXECUTABLE_LINKER__SDL2_Renderer_Debug CMakeFiles/SDL2_Renderer.dir/src/main.c.o CMakeFiles/SDL2_Renderer.dir/src/camera/camera.c.o CMakeFiles/SDL2_Renderer.dir/src/common/geometry.c.o CMakeFiles/SDL2_Renderer.dir/src/distance_providers/distance_aggregator.c.o CMakeFiles/SDL2_Renderer.dir/src/distance_providers/sphere/sphere.c.o | /opt/homebrew/lib/libSDL2main.a /opt/homebrew/lib/libSDL2.dylib /opt/homebrew/lib/libSDL2_ttf.dylib /opt/homebrew/lib/libSDL2_ttf.dylib /opt/homebrew/lib/libSDL2_image.dylib /opt/homebrew/lib/libSDL2_mixer.dylib
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5
   LINK_LIBRARIES = /opt/homebrew/lib/libSDL2main.a  /opt/homebrew/lib/libSDL2.dylib  -framework Cocoa  /opt/homebrew/lib/libSDL2_ttf.dylib  /opt/homebrew/lib/libSDL2_ttf.dylib  -framework Cocoa  /opt/homebrew/lib/libSDL2_image.dylib  /opt/homebrew/lib/libSDL2_mixer.dylib
   OBJECT_DIR = CMakeFiles/SDL2_Renderer.dir

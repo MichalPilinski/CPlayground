@@ -6,6 +6,7 @@
 #include <stdarg.h>
 
 #include "camera/camera.h"
+#include "distance_providers/distance_aggregator.h"
 
 // Program-persisted variables
 SDL_Window *window;
@@ -163,6 +164,14 @@ SDL_bool handleInputs()
     return SDL_TRUE;
 }
 
+void setupEntities()
+{
+    addSphere(&(struct Point3D) {10, 10, 10}, 1);
+
+    double distance = getSceneDistance(&(struct Point3D) {0, 0, 0});
+    printf("Distance: [%f]", distance);
+}
+
 void initScene()
 {
     initSdl();
@@ -173,6 +182,7 @@ void initScene()
     setupHeaderText();
 
     setupCamera();
+    setupEntities();
 }
 
 void mainLoop()

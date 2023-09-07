@@ -8,7 +8,7 @@
 -- CMAKE_PROJECT_NAME: SDL2_Renderer
 -- CMAKE_FINDCMAKE: /Users/michau/Repos/CPlayground/SDL2_Renderer/CMAKE
 
--- SOURCE entry point : src/main.csrc/camera/camera.hsrc/camera/camera.csrc/common/geometry.hsrc/common/geometry.c
+-- SOURCE entry point : src/main.csrc/camera/camera.hsrc/camera/camera.csrc/common/geometry.hsrc/common/geometry.csrc/distance_providers/distance_aggregetor.hsrc/distance_providers/distance_aggregetor.cppsrc/distance_providers/sphere/sphere.hsrc/distance_providers/sphere/sphere.cpp
 
 
 -- FINDING SDL2

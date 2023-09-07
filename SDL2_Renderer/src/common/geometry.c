@@ -20,6 +20,11 @@ void addVectorToPoint(struct Point3D *point, struct Vector3D *vector3D)
     point->y = point->y + vector3D->y;
     point->z = point->z + vector3D->z;
 }
+
+double getPointsDistance(struct Point3D *point, struct Point3D *point2)
+{
+    return sqrt(pow(point->x - point2->x, 2) + pow(point->y - point2->y, 2) + pow(point->z - point2->z, 2));
+}
 // endregion
 
 // region Vector
