@@ -2,7 +2,13 @@
 
 double getSphereDistance(struct Sphere *sphere, struct Point3D *point)
 {
-    double distance = getPointsDistance(&sphere->center, point);
+
+    double distance = sqrt(
+            pow(sphere->center.x - point->x, 2) +
+            pow(sphere->center.y - point->y, 2) +
+            pow(sphere->center.z - fmod(point->z, 5), 2)
+        );
+
     distance -= sphere->radius;
 
     return distance;

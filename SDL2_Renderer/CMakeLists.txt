@@ -24,7 +24,9 @@ set(SOURCE_FILES    src/main.c
         src/distance_providers/distance_aggregator.h
         src/distance_providers/distance_aggregator.c
         src/distance_providers/sphere/sphere.h
-        src/distance_providers/sphere/sphere.c)
+        src/distance_providers/sphere/sphere.c
+        src/resolver/resolver.c
+        src/resolver/resolver.h)
 
 Message("")
 Message( STATUS "SOURCE entry point : " ${SOURCE_FILES} )

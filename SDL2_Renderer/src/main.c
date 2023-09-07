@@ -3,10 +3,10 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
-#include <stdarg.h>
 
 #include "camera/camera.h"
 #include "distance_providers/distance_aggregator.h"
+#include "resolver/resolver.h"
 
 // Program-persisted variables
 SDL_Window *window;
@@ -14,8 +14,8 @@ SDL_Renderer *renderer;
 
 TTF_Font *font;
 
-int windowWidth = 800;
-int windowHeight = 640;
+int windowWidth = 400;
+int windowHeight = 400;
 
 SDL_Rect headerTextRect;
 SDL_Texture *headerText;
@@ -26,6 +26,9 @@ SDL_bool inSampleRect = SDL_FALSE;
 SDL_Color white = {255, 255, 255};
 
 double cameraFocalLength = 1;
+
+SDL_Texture* worldTexture;
+unsigned char *worldTextureBuffer;
 
 void initSdl()
 {
@@ -42,12 +45,20 @@ void initSdl()
 
 void initWindowAndRenderer()
 {
-    int windowCreationCode = SDL_CreateWindowAndRenderer(windowWidth, windowHeight, SDL_WINDOW_SHOWN, &window, &renderer);
-    if (windowCreationCode != 0) {
-        printf("[Error] Creating Window and Renderer: %s\n", SDL_GetError());
-        exit(0);
-    } else {
-        printf("Created Window and Renderer %dx%d\n", windowWidth, windowHeight);
+    SDL_Init( SDL_INIT_EVERYTHING );
+    window = SDL_CreateWindow( "SDL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_SHOWN );
+    renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED );
+
+    SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
+
+    // dump renderer info
+    SDL_RendererInfo info;
+    SDL_GetRendererInfo( renderer, &info );
+    printf("Renderer name: %s\n", info.name);
+    printf("Texture formats: \n");
+    for( Uint32 i = 0; i < info.num_texture_formats; i++ )
+    {
+        printf("%s \n", SDL_GetPixelFormatName( info.texture_formats[i]));
     }
 }
 
@@ -89,7 +100,7 @@ void setupCamera()
     initCamera(sensorWidth, 1, windowWidth, windowHeight, cameraFocalLength);
 
     setCameraPosition(&(struct Point3D) {0, 0, 0});
-    setCameraTarget(&(struct Point3D){10, 10, 10});
+    setCameraTarget(&(struct Point3D){1, 0, 0});
 }
 
 void renderCameraData()
@@ -166,10 +177,13 @@ SDL_bool handleInputs()
 
 void setupEntities()
 {
-    addSphere(&(struct Point3D) {10, 10, 10}, 1);
+    addSphere(&(struct Point3D) {15, 0, 0}, 1);
+}
 
-    double distance = getSceneDistance(&(struct Point3D) {0, 0, 0});
-    printf("Distance: [%f]", distance);
+void setupWordTexture()
+{
+    worldTexture = SDL_CreateTexture( renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, windowWidth, windowHeight);
+    worldTextureBuffer = (unsigned char*)malloc( 4 * windowHeight * windowWidth * sizeof(unsigned char));
 }
 
 void initScene()
@@ -181,8 +195,35 @@ void initScene()
     setupWindowIcon();
     setupHeaderText();
 
+    setupWordTexture();
     setupCamera();
     setupEntities();
+}
+
+void render()
+{
+    struct Point3D cameraPosition = getCameraPosition();
+
+    for(unsigned int i = 0; i < windowHeight; i++)
+    {
+        for(unsigned int j = 0; j < windowWidth; j++)
+        {
+            unsigned int index = ((windowWidth * i) + j) * 4 ;
+
+            struct Vector3D direction = getScreenPointDirection(i,j);
+            struct RaySimulationResult result = simulateRay(&cameraPosition, &direction);
+
+            int color = 254 * result.doesIntersect;
+
+            worldTextureBuffer[index + 0] = color;      // b
+            worldTextureBuffer[index + 1] = color;      // g
+            worldTextureBuffer[index + 2] = color;    // r
+            worldTextureBuffer[index + 3] = SDL_ALPHA_OPAQUE;    // a
+        }
+    }
+
+    SDL_UpdateTexture(worldTexture, NULL, worldTextureBuffer, windowWidth * 4);
+    SDL_RenderCopy( renderer, worldTexture, NULL, NULL);
 }
 
 void mainLoop()
@@ -194,9 +235,8 @@ void mainLoop()
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
 
-        // Render the sample rectangle
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 1);
-        SDL_RenderFillRect(renderer, &sampleRect);
+        // Render world
+        render();
 
         // Render sample text
         SDL_RenderCopy(renderer, headerText, NULL, &headerTextRect);

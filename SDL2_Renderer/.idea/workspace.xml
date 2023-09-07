@@ -20,11 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ace6479-4d8e-450e-98c1-c39aae57a732" name="Changes" comment="Exposed Camera functions, implemented init in main">
-      <change afterPath="$PROJECT_DIR$/src/distance_providers/distance_aggregator.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/distance_providers/distance_aggregator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.h" afterDir="false" />
+    <list default="true" id="8ace6479-4d8e-450e-98c1-c39aae57a732" name="Changes" comment="Added distance estimators">
+      <change afterPath="$PROJECT_DIR$/src/resolver/resolver.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resolver/resolver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
@@ -34,8 +32,8 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/bin/SDL2_Renderer" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/bin/SDL2_Renderer" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/geometry.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/geometry.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/geometry.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/geometry.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,16 +94,17 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="SDL2_Renderer" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SDL2_Renderer" TARGET_NAME="SDL2_Renderer" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SDL2_Renderer" RUN_TARGET_NAME="SDL2_Renderer">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SDL2_Renderer" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SDL2_Renderer" TARGET_NAME="SDL2_Renderer" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SDL2_Renderer" RUN_TARGET_NAME="SDL2_Renderer">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -123,7 +122,8 @@
       <workItem from="1693348687577" duration="64000" />
       <workItem from="1693414439227" duration="10674000" />
       <workItem from="1694022632862" duration="7665000" />
-      <workItem from="1694107628457" duration="4578000" />
+      <workItem from="1694107628457" duration="5026000" />
+      <workItem from="1694116530315" duration="7787000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized SDL2 project">
       <option name="closed" value="true" />
@@ -157,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694030305218</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added distance estimators">
+      <option name="closed" value="true" />
+      <created>1694112876506</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1694112876506</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,7 +182,8 @@
     <MESSAGE value="Added sensor world vectors calculation logic" />
     <MESSAGE value="Added prerequisites for ray calculations in camera" />
     <MESSAGE value="Exposed Camera functions, implemented init in main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Exposed Camera functions, implemented init in main" />
+    <MESSAGE value="Added distance estimators" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added distance estimators" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -185,5 +194,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="renderer" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
