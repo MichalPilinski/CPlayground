@@ -99,8 +99,8 @@ void setupCamera()
     double sensorWidth = (double) windowWidth / windowHeight;
     initCamera(sensorWidth, 1, windowWidth, windowHeight, cameraFocalLength);
 
-    setCameraPosition(&(struct Point3D) {0, 0, 0});
-    setCameraTarget(&(struct Point3D){1, 0, 0});
+    setCameraPosition(&(struct Point3D) {10, 10, 10});
+    setCameraTarget(&(struct Point3D){0, 0, 0});
 }
 
 void renderCameraData()
@@ -177,7 +177,7 @@ SDL_bool handleInputs()
 
 void setupEntities()
 {
-    addSphere(&(struct Point3D) {15, 0, 0}, 1);
+    addSphere(&(struct Point3D) {6, 6, 0}, 1);
 }
 
 void setupWordTexture()
@@ -210,7 +210,7 @@ void render()
         {
             unsigned int index = ((windowWidth * i) + j) * 4 ;
 
-            struct Vector3D direction = getScreenPointDirection(i,j);
+            struct Vector3D direction = getScreenPointDirection(j,windowHeight - i);
             struct RaySimulationResult result = simulateRay(&cameraPosition, &direction);
 
             int color = 254 * result.doesIntersect;
@@ -226,6 +226,7 @@ void render()
     SDL_RenderCopy( renderer, worldTexture, NULL, NULL);
 }
 
+double cameraAngle = 0.1;
 void mainLoop()
 {
     for (;;) {
@@ -237,6 +238,15 @@ void mainLoop()
 
         // Render world
         render();
+
+        // Rotate camera
+        struct Point3D cameraPosition = getCameraPosition();
+        struct Point3D nextCameraPosition = (struct Point3D) {
+            .x = cameraPosition.x * cos(cameraAngle) - cameraPosition.y * sin(cameraAngle),
+            .y = cameraPosition.x * sin(cameraAngle) + cameraPosition.y * cos(cameraAngle),
+            .z = cameraPosition.z
+        };
+        setCameraPosition(&nextCameraPosition);
 
         // Render sample text
         SDL_RenderCopy(renderer, headerText, NULL, &headerTextRect);
@@ -264,6 +274,7 @@ void destroyScene()
 int main()
 {
     initScene();
+    logCamera();
     mainLoop();
     destroyScene();
 

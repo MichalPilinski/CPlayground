@@ -27,6 +27,7 @@ void debugCamera();
 void initCamera(double sensorWidth, double sensorHeight, int screenWidth, int screenHeight, double focalLength);
 void setCameraPosition(struct Point3D *position);
 void setCameraTarget(struct Point3D *target);
+void logCamera();
 struct Point3D getScreenPointPosition(int x, int y);
 struct Vector3D getScreenPointDirection(int x, int y);
 struct Point3D getCameraPosition();

@@ -20,20 +20,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ace6479-4d8e-450e-98c1-c39aae57a732" name="Changes" comment="Added distance estimators">
-      <change afterPath="$PROJECT_DIR$/src/resolver/resolver.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resolver/resolver.h" afterDir="false" />
+    <list default="true" id="8ace6479-4d8e-450e-98c1-c39aae57a732" name="Changes" comment="Implemented simpliest raymarching">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/bin/SDL2_Renderer" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/bin/SDL2_Renderer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/camera/camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/camera/camera.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resolver/resolver.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/resolver/resolver.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,11 +98,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -123,7 +112,8 @@
       <workItem from="1693414439227" duration="10674000" />
       <workItem from="1694022632862" duration="7665000" />
       <workItem from="1694107628457" duration="5026000" />
-      <workItem from="1694116530315" duration="7787000" />
+      <workItem from="1694116530315" duration="8477000" />
+      <workItem from="1694453537778" duration="3691000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized SDL2 project">
       <option name="closed" value="true" />
@@ -165,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694112876506</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Implemented simpliest raymarching">
+      <option name="closed" value="true" />
+      <created>1694124625798</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1694124625798</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +181,8 @@
     <MESSAGE value="Added prerequisites for ray calculations in camera" />
     <MESSAGE value="Exposed Camera functions, implemented init in main" />
     <MESSAGE value="Added distance estimators" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added distance estimators" />
+    <MESSAGE value="Implemented simpliest raymarching" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented simpliest raymarching" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
