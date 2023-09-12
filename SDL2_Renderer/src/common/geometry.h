@@ -25,6 +25,7 @@ struct Vector3D getVector3D(struct Point3D *pointFrom, struct Point3D *pointTo);
 double getDotProduct(struct Vector3D *vec1, struct Vector3D *vec2);
 double getVector3DLength(struct Vector3D *vector);
 struct Vector3D getDotProductVector3D(struct Vector3D *vec1, struct Vector3D *vec2);
+void clampVector3D(struct Vector3D *vec);
 
 void addVectorToPoint(struct Point3D *point, struct Vector3D *vector3D);
 double getPointsDistance(struct Point3D *point, struct Point3D *point2);

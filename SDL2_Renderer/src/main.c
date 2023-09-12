@@ -99,7 +99,7 @@ void setupCamera()
     double sensorWidth = (double) windowWidth / windowHeight;
     initCamera(sensorWidth, 1, windowWidth, windowHeight, cameraFocalLength);
 
-    setCameraPosition(&(struct Point3D) {-20, -20, 10});
+    setCameraPosition(&(struct Point3D) {-20, -20, 20});
     setCameraTarget(&(struct Point3D){0, 0, 0});
 }
 
@@ -178,8 +178,8 @@ SDL_bool handleInputs()
 void setupEntities()
 {
     struct Material magentaMaterial = (struct Material) {
-        .ambientConstant = 1,
-        .diffuseConstant = 1,
+        .ambientConstant = 0.1,
+        .diffuseConstant = 0.5,
         .shininessConstant = 1,
         .specularConstant = 1,
         .color = (struct RgbColor) {
@@ -190,8 +190,8 @@ void setupEntities()
     };
 
     struct Material blueMaterial = (struct Material) {
-            .ambientConstant = 1,
-            .diffuseConstant = 1,
+            .ambientConstant = 0.1,
+            .diffuseConstant = 0.5,
             .shininessConstant = 1,
             .specularConstant = 1,
             .color = (struct RgbColor) {
@@ -201,8 +201,8 @@ void setupEntities()
             }
     };
 
-    addSphere(&(struct Point3D) {6, 6, 0}, 3, magentaMaterial);
-    addSphere(&(struct Point3D) {1, 1, 0}, 2, blueMaterial);
+    addSphere(&(struct Point3D) {6, 6, 0}, 2, magentaMaterial);
+    addSphere(&(struct Point3D) {1, 1, 0}, 3, blueMaterial);
 }
 
 void setupWordTexture()
@@ -236,13 +236,11 @@ void render()
             unsigned int index = ((windowWidth * i) + j) * 4 ;
 
             struct Vector3D direction = getScreenPointDirection(j,windowHeight - i);
-            struct RaySimulationResult result = simulateRay(&cameraPosition, &direction);
+            struct RgbColor result = simulateRay(&cameraPosition, &direction);
 
-            int color = 254 * result.doesIntersect;
-
-            worldTextureBuffer[index + 0] = result.material.color.b * result.doesIntersect;    // b
-            worldTextureBuffer[index + 1] = result.material.color.g * result.doesIntersect;    // g
-            worldTextureBuffer[index + 2] = result.material.color.r * result.doesIntersect;    // r
+            worldTextureBuffer[index + 0] = result.b;
+            worldTextureBuffer[index + 1] = result.g;
+            worldTextureBuffer[index + 2] = result.r;
             worldTextureBuffer[index + 3] = SDL_ALPHA_OPAQUE;    // a
         }
     }

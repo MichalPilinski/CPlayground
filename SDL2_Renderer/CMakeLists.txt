@@ -28,6 +28,8 @@ set(SOURCE_FILES    src/main.c
         src/resolver/resolver.c
         src/resolver/resolver.h
         src/common/material.h
+        src/light_sources/light_aggregator.c
+        src/light_sources/light_aggregator.h
 )
 
 Message("")

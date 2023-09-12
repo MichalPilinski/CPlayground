@@ -20,8 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ace6479-4d8e-450e-98c1-c39aae57a732" name="Changes" comment="Fixed camera view">
-      <change afterPath="$PROJECT_DIR$/src/common/material.h" afterDir="false" />
+    <list default="true" id="8ace6479-4d8e-450e-98c1-c39aae57a732" name="Changes" comment="Added colors support">
+      <change afterPath="$PROJECT_DIR$/src/light_sources/light_aggregator.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/light_sources/light_aggregator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
@@ -30,10 +31,9 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/bin/SDL2_Renderer" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/bin/SDL2_Renderer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/distance_providers/distance_aggregator.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/distance_providers/distance_aggregator.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/distance_providers/distance_aggregator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/distance_providers/distance_aggregator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/distance_providers/sphere/sphere.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/geometry.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/geometry.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/geometry.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/geometry.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resolver/resolver.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/resolver/resolver.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resolver/resolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/resolver/resolver.h" afterDir="false" />
@@ -128,7 +128,7 @@
       <workItem from="1694107628457" duration="5026000" />
       <workItem from="1694116530315" duration="8477000" />
       <workItem from="1694453537778" duration="4498000" />
-      <workItem from="1694542030813" duration="3155000" />
+      <workItem from="1694542030813" duration="7152000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized SDL2 project">
       <option name="closed" value="true" />
@@ -186,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694457353827</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added colors support">
+      <option name="closed" value="true" />
+      <created>1694545341536</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1694545341536</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +214,8 @@
     <MESSAGE value="Added distance estimators" />
     <MESSAGE value="Implemented simpliest raymarching" />
     <MESSAGE value="Fixed camera view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed camera view" />
+    <MESSAGE value="Added colors support" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added colors support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

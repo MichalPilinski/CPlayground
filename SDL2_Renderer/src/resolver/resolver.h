@@ -7,9 +7,9 @@
 // Will have more properties in the future
 struct RaySimulationResult {
     int doesIntersect;
-    struct Material material;
+    struct RgbColor color;
 };
 
-struct RaySimulationResult simulateRay(struct Point3D *start, struct Vector3D *direction);
+struct RgbColor simulateRay(struct Point3D *start, struct Vector3D *direction);
 
 #endif //SDL2_RENDERER_RESOLVER_H

@@ -112,4 +112,11 @@ struct Vector3D getDotProductVector3D(struct Vector3D *vec1, struct Vector3D *ve
         .z = (vec1->x * vec2->y) - (vec1->y * vec2->x),
     };
 }
+
+void clampVector3D(struct Vector3D *vec)
+{
+    if(vec->x < 0) vec->x = 0;
+    if(vec->y < 0) vec->y = 0;
+    if(vec->z < 0) vec->z = 0;
+}
 // endregion
