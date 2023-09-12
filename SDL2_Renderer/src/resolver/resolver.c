@@ -4,7 +4,7 @@
 
 #define EPSILON 10E-4
 #define HORIZON 10E+3
-#define VISIBILITY_SPHERE 1000
+#define VISIBILITY_SPHERE 100
 
 struct RaySimulationResult simulateRay(struct Point3D *start, struct Vector3D *direction)
 {
@@ -16,7 +16,7 @@ struct RaySimulationResult simulateRay(struct Point3D *start, struct Vector3D *d
     double distance = getSceneDistance(&currentPosition);
     double distanceToStart = getPointsDistance(&currentPosition, start);
 
-    int safetyCounter = 1000;
+    int safetyCounter = 50;
     while(distance > EPSILON && distance < HORIZON && distanceToStart < VISIBILITY_SPHERE)
     {
         struct Vector3D nextStep = getScaledVector(&normalizedDirection, distance);
@@ -26,16 +26,21 @@ struct RaySimulationResult simulateRay(struct Point3D *start, struct Vector3D *d
 
         safetyCounter--;
         if(safetyCounter < 0) {
-            printf("The forbidden one has been assembled!");
+            // Should return yes (its very close to object!)
             break;
         }
 
-        //distanceToStart = getPointsDistance(&currentPosition, start);
+        distanceToStart = getPointsDistance(&currentPosition, start);
     }
 
     int intersectionFlag = distance <= EPSILON;
+    struct Material material;
+    if(intersectionFlag) {
+        material = getMaterialAtPoint(&currentPosition);
+    }
 
     return (struct RaySimulationResult) {
-        .doesIntersect = intersectionFlag
+        .doesIntersect = intersectionFlag,
+        .material = material
     };
 }

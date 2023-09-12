@@ -99,7 +99,7 @@ void setupCamera()
     double sensorWidth = (double) windowWidth / windowHeight;
     initCamera(sensorWidth, 1, windowWidth, windowHeight, cameraFocalLength);
 
-    setCameraPosition(&(struct Point3D) {10, 10, 10});
+    setCameraPosition(&(struct Point3D) {-20, -20, 10});
     setCameraTarget(&(struct Point3D){0, 0, 0});
 }
 
@@ -177,7 +177,32 @@ SDL_bool handleInputs()
 
 void setupEntities()
 {
-    addSphere(&(struct Point3D) {6, 6, 0}, 1);
+    struct Material magentaMaterial = (struct Material) {
+        .ambientConstant = 1,
+        .diffuseConstant = 1,
+        .shininessConstant = 1,
+        .specularConstant = 1,
+        .color = (struct RgbColor) {
+            .r = 255,
+            .g = 0,
+            .b = 255
+        }
+    };
+
+    struct Material blueMaterial = (struct Material) {
+            .ambientConstant = 1,
+            .diffuseConstant = 1,
+            .shininessConstant = 1,
+            .specularConstant = 1,
+            .color = (struct RgbColor) {
+                    .r = 0,
+                    .g = 0,
+                    .b = 255
+            }
+    };
+
+    addSphere(&(struct Point3D) {6, 6, 0}, 3, magentaMaterial);
+    addSphere(&(struct Point3D) {1, 1, 0}, 2, blueMaterial);
 }
 
 void setupWordTexture()
@@ -215,9 +240,9 @@ void render()
 
             int color = 254 * result.doesIntersect;
 
-            worldTextureBuffer[index + 0] = color;      // b
-            worldTextureBuffer[index + 1] = color;      // g
-            worldTextureBuffer[index + 2] = color;    // r
+            worldTextureBuffer[index + 0] = result.material.color.b * result.doesIntersect;    // b
+            worldTextureBuffer[index + 1] = result.material.color.g * result.doesIntersect;    // g
+            worldTextureBuffer[index + 2] = result.material.color.r * result.doesIntersect;    // r
             worldTextureBuffer[index + 3] = SDL_ALPHA_OPAQUE;    // a
         }
     }
@@ -226,7 +251,7 @@ void render()
     SDL_RenderCopy( renderer, worldTexture, NULL, NULL);
 }
 
-double cameraAngle = 0.1;
+double cameraAngle = 0.0;
 void mainLoop()
 {
     for (;;) {

@@ -2,10 +2,12 @@
 #define SDL2_RENDERER_RESOLVER_H
 
 #include "../common/geometry.h"
+#include "../common/material.h"
 
 // Will have more properties in the future
 struct RaySimulationResult {
     int doesIntersect;
+    struct Material material;
 };
 
 struct RaySimulationResult simulateRay(struct Point3D *start, struct Vector3D *direction);
