@@ -118,5 +118,9 @@ void clampVector3D(struct Vector3D *vec)
     if(vec->x < 0) vec->x = 0;
     if(vec->y < 0) vec->y = 0;
     if(vec->z < 0) vec->z = 0;
+
+    if(vec->x > 1) vec->x = 1;
+    if(vec->y > 1) vec->y = 1;
+    if(vec->z > 1) vec->z = 1;
 }
 // endregion
