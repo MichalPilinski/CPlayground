@@ -1,4 +1,5 @@
 #include "light_aggregator.h"
+#include "string.h"
 
 struct Light lights[10];
 int lightsCount = 0;
@@ -53,3 +54,4 @@ double calculateSpecularIntensity(struct Point3D *surfacePoint, struct Vector3D 
 
     return intensity;
 }
+

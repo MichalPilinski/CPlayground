@@ -15,8 +15,8 @@ SDL_Renderer *renderer;
 
 TTF_Font *font;
 
-int windowWidth = 1200;
-int windowHeight = 900;
+int windowWidth = 300;
+int windowHeight = 300;
 
 SDL_Rect headerTextRect;
 SDL_Texture *headerText;
@@ -30,6 +30,30 @@ double cameraFocalLength = 1;
 
 SDL_Texture* worldTexture;
 unsigned char *worldTextureBuffer;
+
+struct Material redMaterial = (struct Material) {
+        .ambientConstant = 0.15,
+        .diffuseConstant = 0.5,
+        .shininessConstant = 5,
+        .specularConstant = 0.2,
+        .color = (struct RgbColor) {
+                .r = 255,
+                .g = 0,
+                .b = 0
+        }
+};
+
+struct Material blueMaterial = (struct Material) {
+        .ambientConstant = 0.15,
+        .diffuseConstant = 0.5,
+        .shininessConstant = 5,
+        .specularConstant = 0.2,
+        .color = (struct RgbColor) {
+                .r = 0,
+                .g = 0,
+                .b = 255
+        }
+};
 
 void initSdl()
 {
@@ -100,8 +124,8 @@ void setupCamera()
     double sensorWidth = (double) windowWidth / windowHeight;
     initCamera(sensorWidth, 1, windowWidth, windowHeight, cameraFocalLength);
 
-    setCameraPosition(&(struct Point3D) {-10, -10, 20});
-    setCameraTarget(&(struct Point3D){10, 10, 0});
+    setCameraPosition(&(struct Point3D) {-5, 10, 8});
+    setCameraTarget(&(struct Point3D){0, 0, 0});
 }
 
 void renderCameraData()
@@ -178,25 +202,8 @@ SDL_bool handleInputs()
 
 void setupEntities()
 {
-    // Distance-provider objects
-    struct Material magentaMaterial = (struct Material) {
-        .ambientConstant = 0.05,
-        .diffuseConstant = 0.5,
-        .shininessConstant = 5,
-        .specularConstant = 0.1,
-        .color = (struct RgbColor) {
-            .r = 255,
-            .g = 0,
-            .b = 0
-        }
-    };
-
-    addSphere(&(struct Point3D) {6, 6, 0}, 2, magentaMaterial);
-
     // Lights
-    addLight(&(struct Point3D) { 10, 30, 10 }, 100);
-    addLight(&(struct Point3D) { 30, 10, 10 }, 100);
-
+    addLight(&(struct Point3D) { 0, 5, 5 }, 50);
 }
 
 void setupWordTexture()
@@ -243,7 +250,18 @@ void render()
     SDL_RenderCopy( renderer, worldTexture, NULL, NULL);
 }
 
-double cameraAngle = 0.0;
+
+double spheresDistance = 4;
+double spheresSpeed = -0.125;
+void addSpheres() {
+    spheresDistance += spheresSpeed;
+
+    addSphere(&(struct Point3D) {-spheresDistance, 0, 0}, 2, redMaterial);
+    addSphere(&(struct Point3D) {spheresDistance, 0, 0}, 2, blueMaterial);
+}
+
+double cameraAngle = -0.05;
+
 void mainLoop()
 {
     for (;;) {
@@ -252,6 +270,9 @@ void mainLoop()
         // Blank out the renderer with all black
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
+
+        // Setup objects
+        addSpheres();
 
         // Render world
         render();
@@ -272,6 +293,9 @@ void mainLoop()
         // Present to renderer
         SDL_RenderPresent(renderer);
         SDL_Delay(10);
+
+        // Clear objects
+        clearSpheres();
     }
 }
 
